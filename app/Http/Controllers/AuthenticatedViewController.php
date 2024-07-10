@@ -49,8 +49,10 @@ class AuthenticatedViewController extends Controller
     }
 
 
-    public function destroy(string $id)
+    public function destroy(string $slug)
     {
-        //
+        $application = auth()->user()->jobApplications()->where('slug', $slug)->first();
+        $application->delete();
+        return redirect()->route('dashboard');
     }
 }

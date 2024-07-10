@@ -1,8 +1,9 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head, Link } from "@inertiajs/vue3";
+import { Head } from "@inertiajs/vue3";
 import { onMounted } from "vue";
 import Container from "@/Components/ui/Container.vue";
+import JobApplication from "@/Components/JobApplication.vue";
 
 const props = defineProps({
     applications: {
@@ -22,14 +23,7 @@ onMounted(() => {
     <AuthenticatedLayout>
         <Container>
             <template v-for="application in applications" :key="application.id">
-                <div class="py-8">
-                    <Link
-                        :href="`/applications/application-${application.slug}`"
-                        class="p-4 border border-gray-200 rounded-lg"
-                    >
-                        {{ application.job_title }}
-                    </Link>
-                </div>
+                <JobApplication :application="application" />
             </template>
         </Container>
     </AuthenticatedLayout>
