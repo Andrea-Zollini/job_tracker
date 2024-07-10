@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,7 +21,8 @@ class JobApplicationFactory extends Factory
         $user = User::get()->random();
         return [
             'user_id' => $user->id,
-            'job_title' => 'Test Job Title',
+            'job_title' => $job_title = 'Test Job Title',
+            'slug' => Str::slug($job_title),
             'description' => 'Test Description',
             'company_name' => 'Test Company Name',
             'location' => 'Test Location',

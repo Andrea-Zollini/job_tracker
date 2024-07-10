@@ -16,6 +16,7 @@ class JobApplication extends Model
     protected $fillable = [
         'user_id',
         'job_title',
+        'slug',
         'description',
         'company_name',
         'location',
