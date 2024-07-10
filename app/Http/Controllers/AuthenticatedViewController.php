@@ -18,7 +18,7 @@ class AuthenticatedViewController extends Controller
 
     public function create()
     {
-        //
+        return Inertia::render('Create');
     }
 
 

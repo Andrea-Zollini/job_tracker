@@ -21,8 +21,8 @@ onMounted(() => {
     <AuthenticatedLayout>
         <template v-for="application in applications" :key="application.id">
             <Link
-                :href="`/applications/${application.slug}`"
-                class="block p-4 border border-gray-200 rounded-lg shadow-md"
+                :href="`/applications/application-${application.slug}`"
+                class="p-4 border border-gray-200 rounded-lg"
             >
                 {{ application.job_title }}
             </Link>
