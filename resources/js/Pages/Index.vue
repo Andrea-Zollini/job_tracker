@@ -6,10 +6,7 @@ import Container from "@/Components/ui/Container.vue";
 import JobApplication from "@/Components/JobApplication.vue";
 
 const props = defineProps({
-    applications: {
-        type: Array,
-        required: true,
-    },
+    applications: Array,
 });
 
 onMounted(() => {
@@ -22,8 +19,16 @@ onMounted(() => {
 
     <AuthenticatedLayout>
         <Container>
-            <template v-for="application in applications" :key="application.id">
-                <JobApplication :application="application" />
+            <template v-if="props.applications.data.length">
+                <template
+                    v-for="application in props.applications.data"
+                    :key="application.id"
+                >
+                    <JobApplication :application="application" />
+                </template>
+            </template>
+            <template v-else>
+                <p class="pt-6 text-center">No applications found.</p>
             </template>
         </Container>
     </AuthenticatedLayout>

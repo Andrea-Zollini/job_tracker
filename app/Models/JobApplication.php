@@ -22,6 +22,7 @@ class JobApplication extends Model
         'location',
         'job_type',
         'status',
+        'metadata',
     ];
 
     protected $casts = [

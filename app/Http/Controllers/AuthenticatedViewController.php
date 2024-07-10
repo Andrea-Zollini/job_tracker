@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JobApplication;
+use Illuminate\Contracts\Queue\Job;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -9,7 +11,11 @@ class AuthenticatedViewController extends Controller
 {
     public function index()
     {
-        $applications = count(auth()->user()->jobApplications) ? auth()->user()->jobApplications : [];
+        $applications = JobApplication::query()
+            ->where('user_id', auth()->user()->id)
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        // dd($applications);
         return Inertia::render('Index', [
             'applications' => $applications,
         ]);
