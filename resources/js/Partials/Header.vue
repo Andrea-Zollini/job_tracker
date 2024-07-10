@@ -25,21 +25,23 @@ const mobileMenuOpen = ref(false);
                 aria-label="Global"
             >
                 <div class="flex items-center shrink-0">
-                    <Link :href="route('dashboard')">
-                        <ApplicationLogo
-                            class="block w-auto fill-current h-9"
-                        />
-                    </Link>
-                </div>
-                <div class="hidden lg:flex lg:gap-x-12">
-                    <NavLink
-                        v-for="item in navigation"
-                        :key="item.name"
-                        :href="route(item.href)"
-                        class="text-sm font-semibold leading-6"
-                    >
-                        {{ item.name }}
-                    </NavLink>
+                    <div class="flex items-center shrink-0">
+                        <Link :href="route('dashboard')">
+                            <ApplicationLogo
+                                class="block w-auto fill-current h-9"
+                            />
+                        </Link>
+                    </div>
+                    <div class="hidden ms-6 lg:flex lg:gap-x-2">
+                        <NavLink
+                            v-for="item in navigation"
+                            :key="item.name"
+                            :href="route(item.href)"
+                            class="text-sm font-semibold leading-6"
+                        >
+                            {{ item.name }}
+                        </NavLink>
+                    </div>
                 </div>
                 <template v-if="!$page.props.auth.user">
                     <div class="flex items-center justify-end flex-1 gap-x-6">

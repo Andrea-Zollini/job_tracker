@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\ApplicationStatus;
+use App\JobType;
 use App\Models\JobApplication;
 use Illuminate\Contracts\Queue\Job;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
 class AuthenticatedViewController extends Controller
@@ -15,7 +20,6 @@ class AuthenticatedViewController extends Controller
             ->where('user_id', auth()->user()->id)
             ->orderBy('created_at', 'desc')
             ->paginate(10);
-        // dd($applications);
         return Inertia::render('Index', [
             'applications' => $applications,
         ]);
@@ -24,13 +28,35 @@ class AuthenticatedViewController extends Controller
 
     public function create()
     {
-        return Inertia::render('Create');
+        return Inertia::render('Create', [
+            'statuses' => ApplicationStatus::cases(),
+            'job_types' => JobType::cases(),
+        ]);
     }
 
 
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'job_title' => ['required', 'string', 'max:255'],
+            'company_name' => ['required', 'string', 'max:255'],
+            'description' => ['nullable', 'string', 'max:1000'],
+            'location' => ['required', 'string', 'max:255'],
+            'status' => ['required', 'string', 'max:255'],
+            'job_type' => ['required', 'string', 'max:255'],
+        ]);
+        $application = JobApplication::create([
+            'user_id' => auth()->user()->id,
+            'job_title' => $job_title = $validated['job_title'],
+            'slug' => Str::slug($job_title),
+            'company_name' => $validated['company_name'],
+            'description' => $validated['description'],
+            'location' => $validated['location'],
+            'status' => Str::snake($validated['status']),
+            'job_type' => Str::snake($validated['job_type']),
+        ]);
+        $application->save();
+        return redirect()->route('dashboard')->with('success', 'Application Created Successfully');
     }
 
 

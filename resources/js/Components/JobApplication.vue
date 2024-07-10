@@ -1,5 +1,5 @@
 <script setup>
-import { Link, useForm } from "@inertiajs/vue3";
+import { Link } from "@inertiajs/vue3";
 
 const props = defineProps({
     application: Object,
@@ -11,7 +11,7 @@ const statusColors = {
     rejected: "bg-red-100 text-red-700",
     cancelled: "bg-gray-100 text-gray-700",
     completed: "bg-blue-100 text-blue-700",
-    initial_interview: "bg-orange-100 text-orange-700",
+    initial_interview: "bg-fuchsia-100 text-fuchsia-700",
     technical_interview: "bg-purple-100 text-purple-700",
 };
 

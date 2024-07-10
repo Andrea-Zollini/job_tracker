@@ -1,16 +1,11 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head } from "@inertiajs/vue3";
-import { onMounted } from "vue";
 import Container from "@/Components/ui/Container.vue";
 import JobApplication from "@/Components/JobApplication.vue";
 
 const props = defineProps({
     applications: Array,
-});
-
-onMounted(() => {
-    console.log(props.applications);
 });
 </script>
 
