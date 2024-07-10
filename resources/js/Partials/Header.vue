@@ -33,7 +33,7 @@ const mobileMenuOpen = ref(false);
                     v-for="item in navigation"
                     :key="item.name"
                     :href="route(item.href)"
-                    class="text-sm font-semibold leading-6 text-gray-900"
+                    class="text-sm font-semibold leading-6"
                 >
                     {{ item.name }}
                 </NavLink>
@@ -42,7 +42,7 @@ const mobileMenuOpen = ref(false);
                 <div class="flex items-center justify-end flex-1 gap-x-6">
                     <a
                         href="#"
-                        class="hidden lg:block lg:text-sm lg:font-semibold lg:leading-6 lg:text-gray-900"
+                        class="hidden lg:block lg:text-sm lg:font-semibold lg:leading-6"
                         >Log in</a
                     >
                     <a
