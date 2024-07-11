@@ -30,9 +30,17 @@ provide("mode", props.mode);
     <AuthenticatedLayout>
         <Container>
             <Form is_edit="true" />
-            <!-- <form
+            <form
                 @submit.prevent="deleteApplication(props.application.slug)"
-            ></form> -->
+                class="-mt-9"
+            >
+                <DangerButton
+                    class="px-4 py-2 bg-red-500 rounded"
+                    type="submit"
+                >
+                    Delete
+                </DangerButton>
+            </form>
         </Container>
     </AuthenticatedLayout>
 </template>

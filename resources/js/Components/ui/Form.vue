@@ -24,11 +24,7 @@ const prettyString = (str) => {
     return str;
 };
 
-const test = watch(application, () => {
-    console.log(application);
-});
-
-const submit = () => {
+const submit = (e) => {
     switch (mode) {
         case "edit":
             form.put(route("application.update", application.slug));
@@ -217,12 +213,6 @@ onMounted(() => {
             >
                 Save
             </button>
-            <DangerButton
-                v-if="mode === 'edit'"
-                class="px-4 py-2 bg-red-500 rounded"
-                type="submit"
-                >Delete
-            </DangerButton>
         </div>
     </form>
 </template>

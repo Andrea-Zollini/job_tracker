@@ -5,11 +5,8 @@ namespace App\Http\Controllers;
 use App\ApplicationStatus;
 use App\JobType;
 use App\Models\JobApplication;
-use Illuminate\Contracts\Queue\Job;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
-use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
 class AuthenticatedViewController extends Controller
@@ -57,7 +54,7 @@ class AuthenticatedViewController extends Controller
             'job_type' => Str::snake($validated['job_type']),
         ]);
         $application->save();
-        return redirect()->route('dashboard')->with('success', 'Application Created Successfully');
+        return redirect()->route('dashboard')->with('message', 'Application Created Successfully.');
     }
 
 
@@ -98,7 +95,7 @@ class AuthenticatedViewController extends Controller
             'status' => Str::snake($validated['status']),
             'job_type' => Str::snake($validated['job_type']),
         ]);
-        return redirect()->route('dashboard')->with('success', 'Application Updated Successfully');
+        return redirect()->route('dashboard')->with('message', 'Application Updated Successfully.');
     }
 
 
@@ -106,6 +103,6 @@ class AuthenticatedViewController extends Controller
     {
         $application = auth()->user()->jobApplications()->where('slug', $slug)->first();
         $application->delete();
-        return redirect()->route('dashboard');
+        return redirect()->route('dashboard')->with('message', 'Application Deleted Successfully.');
     }
 }
