@@ -18,6 +18,13 @@ const statusColors = {
 const getStatusColor = (status) => {
     return statusColors[status];
 };
+
+const prettyString = (str) => {
+    if (str.includes("_") || str.includes("-")) {
+        return str.split("_").join(" ").split("-").join(" ");
+    }
+    return str;
+};
 </script>
 
 <template>
@@ -31,7 +38,7 @@ const getStatusColor = (status) => {
                 :class="getStatusColor(props.application.status)"
                 class="inline-flex items-center px-4 py-1 text-sm font-bold capitalize rounded-full ms-auto"
             >
-                {{ props.application.status }}
+                {{ prettyString(props.application.status) }}
             </span>
         </Link>
     </div>

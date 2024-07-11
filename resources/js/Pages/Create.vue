@@ -8,10 +8,12 @@ import { provide } from "vue";
 const props = defineProps({
     statuses: Array,
     job_types: Array,
+    mode: String,
 });
 
 provide("statuses", props.statuses);
 provide("job_types", props.job_types);
+provide("mode", props.mode);
 </script>
 <template>
     <Head title="Create" />
@@ -20,7 +22,7 @@ provide("job_types", props.job_types);
             <h1 class="mt-8 text-3xl font-bold text-center">
                 Add a new Job Application
             </h1>
-            <Form statuses="props.statuses" />
+            <Form is_edit="false" />
         </Container>
     </AuthenticatedLayout>
 </template>

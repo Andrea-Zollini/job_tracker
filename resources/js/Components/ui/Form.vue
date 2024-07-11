@@ -1,6 +1,12 @@
 <script setup>
 import { useForm } from "@inertiajs/vue3";
-import { inject, ref, onMounted } from "vue";
+import { inject, ref, onMounted, watch } from "vue";
+import DangerButton from "@/Components/DangerButton.vue";
+
+const statuses = inject("statuses");
+const job_types = inject("job_types");
+const mode = inject("mode");
+const application = inject("application");
 
 const form = useForm({
     job_title: "",
@@ -11,12 +17,6 @@ const form = useForm({
     job_type: "",
 });
 
-const statuses = inject("statuses");
-const job_types = inject("job_types");
-
-// const selectedStatus = ref("");
-// const selectedJobType = ref("");
-
 const prettyString = (str) => {
     if (str.includes("_") || str.includes("-")) {
         return str.split("_").join(" ").split("-").join(" ");
@@ -24,13 +24,38 @@ const prettyString = (str) => {
     return str;
 };
 
-const addApplication = () => {
-    form.post(route("application.store"));
+const test = watch(application, () => {
+    console.log(application);
+});
+
+const submit = () => {
+    switch (mode) {
+        case "edit":
+            form.put(route("application.update", application.slug));
+            break;
+
+        default:
+            "create";
+            form.post(route("application.store"));
+            break;
+    }
 };
+
+onMounted(() => {
+    if (mode === "edit" && application) {
+        form.job_title = application.job_title;
+        form.description = application.description;
+        form.company_name = application.company_name;
+        form.location = application.location;
+        form.status = application.status;
+        console.log(form.status);
+        form.job_type = application.job_type;
+    }
+});
 </script>
 
 <template>
-    <form @submit.prevent="addApplication">
+    <form @submit.prevent="submit">
         <div class="space-y-12">
             <div class="pb-12 border-b border-gray-900/10">
                 <div
@@ -192,6 +217,12 @@ const addApplication = () => {
             >
                 Save
             </button>
+            <DangerButton
+                v-if="mode === 'edit'"
+                class="px-4 py-2 bg-red-500 rounded"
+                type="submit"
+                >Delete
+            </DangerButton>
         </div>
     </form>
 </template>

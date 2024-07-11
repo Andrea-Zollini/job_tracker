@@ -31,6 +31,7 @@ class AuthenticatedViewController extends Controller
         return Inertia::render('Create', [
             'statuses' => ApplicationStatus::cases(),
             'job_types' => JobType::cases(),
+            'mode' => 'create',
         ]);
     }
 
@@ -65,6 +66,9 @@ class AuthenticatedViewController extends Controller
         $application = auth()->user()->jobApplications()->where('slug', $slug)->first();
         return Inertia::render('Show', [
             'application' => $application,
+            'statuses' => ApplicationStatus::cases(),
+            'job_types' => JobType::cases(),
+            'mode' => 'edit',
         ]);
     }
 
@@ -77,7 +81,24 @@ class AuthenticatedViewController extends Controller
 
     public function update(Request $request, string $id)
     {
-        //
+        $application = auth()->user()->jobApplications()->where('slug', $id)->first();
+        $validated = $request->validate([
+            'job_title' => ['required', 'string', 'max:255'],
+            'company_name' => ['required', 'string', 'max:255'],
+            'description' => ['nullable', 'string', 'max:1000'],
+            'location' => ['required', 'string', 'max:255'],
+            'status' => ['required', 'string', 'max:255'],
+            'job_type' => ['required', 'string', 'max:255'],
+        ]);
+        $application->update([
+            'job_title' => $job_title = $validated['job_title'],
+            'company_name' => $validated['company_name'],
+            'description' => $validated['description'],
+            'location' => $validated['location'],
+            'status' => Str::snake($validated['status']),
+            'job_type' => Str::snake($validated['job_type']),
+        ]);
+        return redirect()->route('dashboard')->with('success', 'Application Updated Successfully');
     }
 
 
