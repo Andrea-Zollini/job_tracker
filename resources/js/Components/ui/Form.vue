@@ -60,12 +60,21 @@ const addTechnology = (e) => {
     }
 };
 
-const removeTechnology = (e) => {
-    e.preventDefault();
-    form.metadata.technologies.splice(e.target.parentElement.index, 1);
+const removeTechnology = (index) => {
+    switch (mode) {
+        case "edit":
+            metadata.value.technologies.splice(index, 1);
+            form.metadata = JSON.stringify(metadata.value);
+            application.metadata = JSON.stringify(metadata.value);
+            break;
+        default:
+            form.metadata.technologies.splice(index, 1);
+            break;
+    }
 };
 
 const submit = (e) => {
+    e.preventDefault();
     switch (mode) {
         case "edit":
             form.put(route("application.update", application.slug));
@@ -275,13 +284,18 @@ onMounted(() => {
 
                     <div class="flex items-center justify-center">
                         <template
-                            v-for="technology in form.metadata.technologies"
+                            v-for="(technology, index) in form.metadata
+                                .technologies"
                         >
                             <span
                                 class="inline-flex items-center px-3 py-2 mx-2 mb-3 text-xs font-medium text-gray-600 bg-gray-100 rounded-full"
                             >
                                 {{ technology }}
-                                <button @click="removeTechnology" class="ms-2">
+                                <button
+                                    type="button"
+                                    @click="removeTechnology(index)"
+                                    class="ms-2"
+                                >
                                     X
                                 </button>
                             </span>
@@ -294,7 +308,7 @@ onMounted(() => {
                             "
                         >
                             <template
-                                v-for="technology in JSON.parse(
+                                v-for="(technology, index) in JSON.parse(
                                     application.metadata
                                 ).technologies"
                             >
@@ -303,7 +317,8 @@ onMounted(() => {
                                 >
                                     {{ technology }}
                                     <button
-                                        @click="removeTechnology"
+                                        type="button"
+                                        @click="removeTechnology(index)"
                                         class="ms-2"
                                     >
                                         X
