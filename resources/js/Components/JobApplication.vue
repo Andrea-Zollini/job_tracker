@@ -2,6 +2,7 @@
 import { Link, useForm } from "@inertiajs/vue3";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 import { EllipsisVerticalIcon } from "@heroicons/vue/20/solid";
+import { onMounted } from "vue";
 
 const props = defineProps({
     application: Object,
@@ -21,6 +22,9 @@ const form = useForm({});
 const deleteApplication = (slug) => {
     form.delete(route("application.destroy", slug));
 };
+onMounted(() => {
+    console.log(JSON.parse(props.application.metadata));
+});
 </script>
 
 <template>
@@ -37,6 +41,20 @@ const deleteApplication = (slug) => {
             >
                 {{ application.status }}
             </p>
+        </div>
+
+        <div
+            class="flex items-center mt-1 text-sm leading-5 text-gray-500 gap-x-2"
+        >
+            <template
+                v-for="technology in JSON.parse(application.metadata)
+                    .technologies"
+            >
+                <svg viewBox="0 0 2 2" class="h-0.5 w-0.5 fill-current">
+                    <circle cx="1" cy="1" r="1" />
+                </svg>
+                <p class="truncate">{{ technology }}</p>
+            </template>
         </div>
     </div>
     <div class="flex items-center flex-none gap-x-4">

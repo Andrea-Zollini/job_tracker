@@ -12,13 +12,12 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class JobApplicationFactory extends Factory
 {
     /**
-     * Define the model's default state.
-     *
      * @return array<string, mixed>
      */
     public function definition(): array
     {
         $user = User::get()->random();
+        $tecnologies = ['PHP', 'Laravel', 'Vue', 'Tailwind', 'React', 'Angular', 'JavaScript', 'Python', 'Hono', 'Node'];
         return [
             'user_id' => $user->id,
             'job_title' => $job_title = 'Test Job Title',
@@ -26,6 +25,7 @@ class JobApplicationFactory extends Factory
             'description' => 'Test Description',
             'company_name' => 'Test Company Name',
             'location' => 'Test Location',
+            'metadata' => json_encode(['technologies' => $this->faker->randomElements($tecnologies, 3)]),
         ];
     }
 }

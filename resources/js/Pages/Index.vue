@@ -20,9 +20,9 @@ setTimeout(() => {
     showMessage.value = false;
 }, 1500);
 
-onMounted(() => {
-    console.log(props.applications);
-});
+// onMounted(() => {
+//     console.log(props.applications);
+// });
 </script>
 
 <template>
