@@ -43,6 +43,7 @@ class AuthenticatedViewController extends Controller
             'location' => ['required', 'string', 'max:255'],
             'status' => ['required', 'string', 'max:255'],
             'job_type' => ['required', 'string', 'max:255'],
+            'metadata' => ['array'],
         ]);
         $application = JobApplication::create([
             'user_id' => auth()->user()->id,
@@ -53,6 +54,7 @@ class AuthenticatedViewController extends Controller
             'location' => $validated['location'],
             'status' => Str::snake($validated['status']),
             'job_type' => Str::snake($validated['job_type']),
+            'metadata' => json_encode($validated['metadata']),
         ]);
         $application->save();
         return redirect()->route('dashboard')->with('message', 'Application Created Successfully.');

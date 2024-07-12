@@ -1,12 +1,14 @@
 <script setup>
 import { useForm } from "@inertiajs/vue3";
-import { inject, ref, onMounted, watch } from "vue";
-import DangerButton from "@/Components/DangerButton.vue";
+import { inject, ref, onMounted } from "vue";
 
 const statuses = inject("statuses");
 const job_types = inject("job_types");
 const mode = inject("mode");
 const application = inject("application", null);
+
+const addedTechnologies = ref([]);
+const addedTechnology = ref("");
 
 const form = useForm({
     job_title: "",
@@ -15,6 +17,9 @@ const form = useForm({
     location: "",
     status: "",
     job_type: "",
+    metadata: {
+        technologies: [],
+    },
 });
 
 const prettyString = (str) => {
@@ -22,6 +27,25 @@ const prettyString = (str) => {
         return str.split("_").join(" ").split("-").join(" ");
     }
     return str;
+};
+
+const sanitize = (str) => {
+    let sanitized = str.toLowerCase();
+    sanitized = sanitized.charAt(0).toUpperCase() + sanitized.slice(1);
+    return sanitized.trim();
+};
+
+const addTechnology = (e) => {
+    e.preventDefault();
+    if (addedTechnology.value.trim() !== "") {
+        form.metadata.technologies.push(sanitize(addedTechnology.value));
+        addedTechnology.value = "";
+    }
+};
+
+const removeTechnology = (e) => {
+    e.preventDefault();
+    addedTechnologies.value.splice(e.target.parentElement.index, 1);
 };
 
 const submit = (e) => {
@@ -198,7 +222,52 @@ onMounted(() => {
                     </div>
                 </div>
 
-                <div class="flex flex-col mt-6 lg:flex-row"></div>
+                <div class="flex flex-col mt-6 lg:flex-row">
+                    <div class="lg:pe-3 sm:col-span-4">
+                        <label
+                            for="company_name"
+                            class="block text-sm font-medium leading-6"
+                            >Technologies*</label
+                        >
+                        <div class="mt-2">
+                            <div
+                                class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md"
+                            >
+                                <input
+                                    type="text"
+                                    name="company_name"
+                                    id="company_name"
+                                    autocomplete="company_name"
+                                    v-model="addedTechnology"
+                                    style="text-indent: 0.5rem"
+                                    class="block flex-1 border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                                    placeholder="Insert Technologies"
+                                />
+                            </div>
+                            <button
+                                class="px-3 py-2 mt-2 text-sm font-semibold text-white bg-indigo-600 rounded-md shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                @click="addTechnology"
+                            >
+                                Add
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-center">
+                        <template
+                            v-for="technology in form.metadata.technologies"
+                        >
+                            <span
+                                class="inline-flex items-center px-3 py-2 mx-2 mb-3 text-xs font-medium text-gray-600 bg-gray-100 rounded-full"
+                            >
+                                {{ technology }}
+                                <button @click="removeTechnology" class="ms-2">
+                                    X
+                                </button>
+                            </span>
+                        </template>
+                    </div>
+                </div>
             </div>
         </div>
 

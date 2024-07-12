@@ -22,9 +22,6 @@ const form = useForm({});
 const deleteApplication = (slug) => {
     form.delete(route("application.destroy", slug));
 };
-onMounted(() => {
-    console.log(JSON.parse(props.application.metadata));
-});
 </script>
 
 <template>
