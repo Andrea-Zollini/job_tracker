@@ -50,7 +50,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <form @submit.prevent="submit">
+    <form @submit.prevent="submit" class="mt-12">
         <div class="space-y-12">
             <div class="pb-12 border-b border-gray-900/10">
                 <div

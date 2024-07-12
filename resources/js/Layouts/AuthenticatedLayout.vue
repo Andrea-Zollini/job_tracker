@@ -315,7 +315,7 @@ const sidebarOpen = ref(false);
                                     <span class="inline-flex rounded-md">
                                         <button
                                             type="button"
-                                            class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out border border-transparent rounded-md hover:text-gray-700 focus:outline-none"
+                                            class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out border border-transparent rounded-md dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none"
                                         >
                                             {{ $page.props.auth.user.name }}
 

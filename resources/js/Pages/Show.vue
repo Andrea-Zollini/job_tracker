@@ -28,14 +28,17 @@ provide("mode", props.mode);
 <template>
     <Head title="Show" />
     <AuthenticatedLayout>
-        <Link :href="route('dashboard')" class="flex items-center gap-x-2">
+        <Link
+            :href="route('dashboard')"
+            class="absolute flex items-center gap-x-2"
+        >
             <ArrowLeftCircleIcon class="w-6 h-6 shrink-0" aria-hidden="true" />
             Go Back
         </Link>
         <Form is_edit="true" />
         <form
             @submit.prevent="deleteApplication(props.application.slug)"
-            class="-mt-9"
+            class="absolute bottom-[3%] lg:bottom-[33%]"
         >
             <DangerButton class="px-4 py-2 bg-red-500 rounded" type="submit">
                 Delete
