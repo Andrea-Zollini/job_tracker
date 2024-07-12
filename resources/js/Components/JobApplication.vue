@@ -1,5 +1,7 @@
 <script setup>
-import { Link } from "@inertiajs/vue3";
+import { Link, useForm } from "@inertiajs/vue3";
+import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
+import { EllipsisVerticalIcon } from "@heroicons/vue/20/solid";
 
 const props = defineProps({
     application: Object,
@@ -15,31 +17,100 @@ const statusColors = {
     technical_interview: "bg-purple-100 text-purple-700",
 };
 
-const getStatusColor = (status) => {
-    return statusColors[status];
-};
-
-const prettyString = (str) => {
-    if (str.includes("_") || str.includes("-")) {
-        return str.split("_").join(" ").split("-").join(" ");
-    }
-    return str;
+const form = useForm({});
+const deleteApplication = (slug) => {
+    form.delete(route("application.destroy", slug));
 };
 </script>
 
 <template>
-    <div class="py-8">
+    <div class="min-w-0">
+        <div class="flex items-start gap-x-3">
+            <p class="text-sm font-semibold leading-6">
+                {{ application.job_title }}
+            </p>
+            <p
+                :class="[
+                    statusColors[application.status],
+                    'mt-0.5 whitespace-nowrap rounded-md px-1.5 py-0.5 text-xs font-medium ring-1 ring-inset',
+                ]"
+            >
+                {{ application.status }}
+            </p>
+        </div>
+    </div>
+    <div class="flex items-center flex-none gap-x-4">
         <Link
             :href="`/applications/application-${application.slug}`"
-            class="flex p-4 border border-gray-200 rounded-lg"
+            class="hidden rounded-md px-2.5 py-1.5 text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 sm:block"
         >
-            <p>{{ props.application.job_title }}</p>
-            <span
-                :class="getStatusColor(props.application.status)"
-                class="inline-flex items-center px-4 py-1 text-sm font-bold capitalize rounded-full ms-auto"
-            >
-                {{ prettyString(props.application.status) }}
+            View application
+            <span class="sr-only">
+                {{ application.job_title }}
             </span>
         </Link>
+        <Menu as="div" class="relative flex-none">
+            <MenuButton class="-m-2.5 block p-2.5 text-gray-200 hover:">
+                <span class="sr-only">Open options</span>
+                <EllipsisVerticalIcon class="w-5 h-5" aria-hidden="true" />
+            </MenuButton>
+            <transition
+                enter-active-class="transition duration-100 ease-out"
+                enter-from-class="transform scale-95 opacity-0"
+                enter-to-class="transform scale-100 opacity-100"
+                leave-active-class="transition duration-75 ease-in"
+                leave-from-class="transform scale-100 opacity-100"
+                leave-to-class="transform scale-95 opacity-0"
+            >
+                <MenuItems
+                    class="absolute right-0 z-10 flex justify-center w-32 py-2 mt-2 origin-top-right bg-white rounded-md shadow-lg dark:bg-gray-800 ring-1 ring-gray-900/5 focus:outline-none"
+                >
+                    <!-- <MenuItem v-slot="{ active }">
+                        <a
+                            href="#"
+                            :class="[
+                                active ? 'bg-gray-50' : '',
+                                'block px-3 py-1 text-sm leading-6 ',
+                            ]"
+                            >Edit<span class="sr-only"
+                                >, {{ application.name }}</span
+                            ></a
+                        >
+                    </MenuItem>
+                    <MenuItem v-slot="{ active }">
+                        <a
+                            href="#"
+                            :class="[
+                                active ? 'bg-gray-50' : '',
+                                'block px-3 py-1 text-sm leading-6 ',
+                            ]"
+                            >Move<span class="sr-only"
+                                >, {{ application.name }}</span
+                            ></a
+                        >
+                    </MenuItem> -->
+                    <MenuItem v-slot="{ active }" class="flex justify-center">
+                        <form
+                            class="flex items-center w-full gap-x-2"
+                            @submit.prevent="
+                                deleteApplication(application.slug)
+                            "
+                        >
+                            <button
+                                type="submit"
+                                :class="[
+                                    active ? 'bg-gray-50 dark:bg-gray-700' : '',
+                                    'flex-1 mx-2 rounded text-sm leading-6 text-center',
+                                ]"
+                            >
+                                Delete<span class="sr-only"
+                                    >, {{ application.name }}</span
+                                >
+                            </button>
+                        </form>
+                    </MenuItem>
+                </MenuItems>
+            </transition>
+        </Menu>
     </div>
 </template>
