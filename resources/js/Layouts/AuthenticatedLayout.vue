@@ -54,7 +54,7 @@ const sidebarOpen = ref(false);
 
 <template>
     <Head title="Dashboard" />
-    <div>
+    <div class="min-h-screen">
         <TransitionRoot as="template" :show="sidebarOpen">
             <Dialog
                 class="relative z-50 lg:hidden"
@@ -263,7 +263,7 @@ const sidebarOpen = ref(false);
             </div>
         </div>
 
-        <div class="lg:pl-72">
+        <div class="min-h-screen lg:pl-72">
             <div
                 class="sticky top-0 z-40 flex items-center h-16 px-4 shrink-0 gap-x-4 sm:gap-x-6 sm:px-6 lg:px-8"
             >
@@ -353,7 +353,9 @@ const sidebarOpen = ref(false);
                 </div>
             </div>
 
-            <main class="py-10">
+            <main
+                class="py-10 min-h-[calc(100vh-64px)] flex flex-col justify-between px-12"
+            >
                 <slot />
             </main>
         </div>

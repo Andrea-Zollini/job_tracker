@@ -63,21 +63,23 @@ const deleteApplication = (slug) => {
                 leave-to-class="transform scale-95 opacity-0"
             >
                 <MenuItems
-                    class="absolute right-0 z-10 flex justify-center w-32 py-2 mt-2 origin-top-right bg-white rounded-md shadow-lg dark:bg-gray-800 ring-1 ring-gray-900/5 focus:outline-none"
+                    class="absolute right-0 z-10 flex flex-col justify-center w-32 py-2 mt-2 origin-top-right bg-white rounded-md shadow-lg dark:bg-gray-800 ring-1 ring-gray-900/5 focus:outline-none"
                 >
-                    <!-- <MenuItem v-slot="{ active }">
-                        <a
-                            href="#"
-                            :class="[
-                                active ? 'bg-gray-50' : '',
-                                'block px-3 py-1 text-sm leading-6 ',
-                            ]"
-                            >Edit<span class="sr-only"
-                                >, {{ application.name }}</span
-                            ></a
-                        >
-                    </MenuItem>
                     <MenuItem v-slot="{ active }">
+                        <Link
+                            :href="`/applications/application-${application.slug}`"
+                            :class="[
+                                active ? 'bg-gray-50 dark:bg-gray-700' : '',
+                                'flex-1 mx-2 rounded sm:hidden mb-1 text-sm leading-6 text-center',
+                            ]"
+                        >
+                            View
+                            <span class="sr-only">
+                                {{ application.name }}
+                            </span>
+                        </Link>
+                    </MenuItem>
+                    <!-- <MenuItem v-slot="{ active }">
                         <a
                             href="#"
                             :class="[

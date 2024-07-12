@@ -48,5 +48,8 @@ setTimeout(() => {
                 <p class="pt-6 text-center">No applications found.</p>
             </template>
         </div>
+        <div class="sticky bottom-0 flex justify-center">
+            Pagination goes here
+        </div>
     </AuthenticatedLayout>
 </template>
