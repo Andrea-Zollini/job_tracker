@@ -1,7 +1,8 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head, useForm } from "@inertiajs/vue3";
+import { Head, useForm, Link } from "@inertiajs/vue3";
 import DangerButton from "@/Components/DangerButton.vue";
+import { ArrowLeftCircleIcon } from "@heroicons/vue/24/outline";
 import Form from "@/Components/ui/Form.vue";
 import Container from "@/Components/ui/Container.vue";
 import { provide } from "vue";
@@ -29,6 +30,13 @@ provide("mode", props.mode);
     <Head title="Show" />
     <AuthenticatedLayout>
         <Container>
+            <Link :href="route('dashboard')" class="flex items-center gap-x-2">
+                <ArrowLeftCircleIcon
+                    class="w-6 h-6 shrink-0"
+                    aria-hidden="true"
+                />
+                Go Back
+            </Link>
             <Form is_edit="true" />
             <form
                 @submit.prevent="deleteApplication(props.application.slug)"

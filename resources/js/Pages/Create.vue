@@ -9,6 +9,7 @@ const props = defineProps({
     statuses: Array,
     job_types: Array,
     mode: String,
+    application: Object,
 });
 
 provide("statuses", props.statuses);

@@ -29,6 +29,7 @@ class AuthenticatedViewController extends Controller
             'statuses' => ApplicationStatus::cases(),
             'job_types' => JobType::cases(),
             'mode' => 'create',
+            'application' => null,
         ]);
     }
 

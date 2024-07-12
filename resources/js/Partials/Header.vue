@@ -46,7 +46,7 @@ const mobileMenuOpen = ref(false);
                 <template v-if="!$page.props.auth.user">
                     <div class="flex items-center justify-end flex-1 gap-x-6">
                         <a
-                            href="#"
+                            :href="route('login')"
                             class="hidden lg:block lg:text-sm lg:font-semibold lg:leading-6"
                             >Log in</a
                         >
@@ -156,7 +156,7 @@ const mobileMenuOpen = ref(false);
                             <div class="py-6">
                                 <template v-if="!$page.props.auth.user">
                                     <Link
-                                        href="#"
+                                        :href="route('login')"
                                         class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                                     >
                                         Log in

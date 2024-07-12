@@ -2,10 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AuthenticatedViewController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 Route::get('/', function () {
     if (Auth::check()) {

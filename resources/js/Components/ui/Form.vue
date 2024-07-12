@@ -6,7 +6,7 @@ import DangerButton from "@/Components/DangerButton.vue";
 const statuses = inject("statuses");
 const job_types = inject("job_types");
 const mode = inject("mode");
-const application = inject("application");
+const application = inject("application", null);
 
 const form = useForm({
     job_title: "",
@@ -44,7 +44,6 @@ onMounted(() => {
         form.company_name = application.company_name;
         form.location = application.location;
         form.status = application.status;
-        console.log(form.status);
         form.job_type = application.job_type;
     }
 });
