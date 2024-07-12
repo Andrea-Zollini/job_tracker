@@ -116,9 +116,12 @@ const sidebarOpen = ref(false);
                             <div
                                 class="flex flex-col px-6 pb-4 overflow-y-auto bg-slate-600 grow gap-y-5"
                             >
-                                <div class="flex items-center h-16 shrink-0">
+                                <Link
+                                    :href="route('dashboard')"
+                                    class="flex items-center h-16 shrink-0"
+                                >
                                     <ApplicationLogo class="w-auto h-8" />
-                                </div>
+                                </Link>
                                 <nav class="flex flex-col flex-1">
                                     <ul
                                         role="list"
@@ -207,9 +210,12 @@ const sidebarOpen = ref(false);
             <div
                 class="flex flex-col px-6 pb-4 overflow-y-auto bg-slate-600 grow gap-y-5"
             >
-                <div class="flex items-center h-16 shrink-0">
+                <Link
+                    :href="route('dashboard')"
+                    class="flex items-center h-16 shrink-0"
+                >
                     <ApplicationLogo class="w-auto h-8" />
-                </div>
+                </Link>
                 <nav class="flex flex-col flex-1">
                     <ul role="list" class="flex flex-col flex-1 gap-y-7">
                         <li>
