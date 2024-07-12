@@ -274,7 +274,7 @@ onMounted(() => {
                                 />
                             </div>
                             <button
-                                class="px-3 py-2 mt-2 text-sm font-semibold text-white bg-indigo-600 rounded-md shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                class="px-3 py-2 mt-5 text-sm font-semibold text-white bg-indigo-600 rounded-md shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                 @click="addTechnology"
                             >
                                 Add
@@ -282,7 +282,9 @@ onMounted(() => {
                         </div>
                     </div>
 
-                    <div class="flex items-center justify-center">
+                    <div
+                        class="flex items-center pt-5 lg:justify-center lg:pt-0"
+                    >
                         <template
                             v-for="(technology, index) in form.metadata
                                 .technologies"

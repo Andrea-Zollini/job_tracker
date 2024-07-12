@@ -358,7 +358,7 @@ const sidebarOpen = ref(false);
             </div>
 
             <main
-                class="py-10 min-h-[calc(100vh-64px)] flex flex-col justify-between px-12"
+                class="py-10 min-h-[calc(100vh-64px)] flex flex-col justify-between px-4 lg:px-12"
             >
                 <slot />
             </main>

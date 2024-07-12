@@ -28,7 +28,7 @@ setTimeout(() => {
 <template>
     <Head title="Dashboard" />
     <AuthenticatedLayout>
-        <div class="px-4 sm:px-6 lg:px-8">
+        <div class="sm:px-6 lg:px-8">
             <template v-if="message && showMessage">
                 <div class="flex justify-center">
                     <p
