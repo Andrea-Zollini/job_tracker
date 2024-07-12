@@ -7,6 +7,9 @@ const job_types = inject("job_types");
 const mode = inject("mode");
 const application = inject("application", null);
 const addedTechnology = ref("");
+const metadata = application
+    ? ref(JSON.parse(application.metadata))
+    : ref(null);
 
 const form = useForm({
     job_title: "",
@@ -35,9 +38,25 @@ const sanitize = (str) => {
 
 const addTechnology = (e) => {
     e.preventDefault();
-    if (addedTechnology.value.trim() !== "") {
-        form.metadata.technologies.push(sanitize(addedTechnology.value));
-        addedTechnology.value = "";
+    switch (mode) {
+        case "edit":
+            if (addedTechnology.value.trim() !== "") {
+                metadata.value.technologies.push(
+                    sanitize(addedTechnology.value)
+                );
+                addedTechnology.value = "";
+            }
+            form.metadata = JSON.stringify(metadata.value);
+            application.metadata = JSON.stringify(metadata.value);
+            break;
+        default:
+            if (addedTechnology.value.trim() !== "") {
+                form.metadata.technologies.push(
+                    sanitize(addedTechnology.value)
+                );
+                addedTechnology.value = "";
+            }
+            break;
     }
 };
 
@@ -61,6 +80,7 @@ const submit = (e) => {
 
 onMounted(() => {
     if (mode === "edit" && application) {
+        // console.log(application.metadata);
         application.value = inject("application");
         form.job_title = application.job_title;
         form.description = application.description;
