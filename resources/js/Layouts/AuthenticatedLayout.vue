@@ -259,8 +259,7 @@ const sidebarOpen = ref(false);
 
         <div class="lg:pl-72">
             <div
-                v-show="navigation[0].current"
-                class="sticky top-0 z-40 flex items-center h-16 px-4 bg-white border-b border-gray-200 shadow-sm shrink-0 gap-x-4 sm:gap-x-6 sm:px-6 lg:px-8"
+                class="sticky top-0 z-40 flex items-center h-16 px-4 shrink-0 gap-x-4 sm:gap-x-6 sm:px-6 lg:px-8"
             >
                 <button
                     type="button"
@@ -277,7 +276,10 @@ const sidebarOpen = ref(false);
                     aria-hidden="true"
                 />
 
-                <div class="flex self-stretch flex-1 gap-x-4 lg:gap-x-6">
+                <div
+                    v-show="navigation[0].current"
+                    class="flex self-stretch flex-1 gap-x-4 lg:gap-x-6"
+                >
                     <form class="relative flex flex-1" action="#" method="GET">
                         <label for="search-field" class="sr-only">Search</label>
                         <MagnifyingGlassIcon
@@ -286,7 +288,7 @@ const sidebarOpen = ref(false);
                         />
                         <input
                             id="search-field"
-                            class="block w-full h-full py-0 pl-8 pr-0 text-gray-900 border-0 placeholder:text-gray-400 focus:ring-0 sm:text-sm"
+                            class="block w-full h-full py-0 pl-8 pr-0 bg-transparent border-0 placeholder:text-gray-400 focus:ring-0 sm:text-sm"
                             placeholder="Search..."
                             type="search"
                             name="search"
