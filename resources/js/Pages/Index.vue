@@ -1,8 +1,10 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head, usePage } from "@inertiajs/vue3";
-import { ref, provide, computed } from "vue";
+import { Head, usePage, Link } from "@inertiajs/vue3";
+import { ref, provide, computed, onMounted } from "vue";
 import JobApplication from "@/Components/JobApplication.vue";
+import { ArrowRightIcon, ArrowLeftIcon } from "@heroicons/vue/20/solid";
+
 const props = defineProps({
     applications: Object,
     message: String,
@@ -17,6 +19,10 @@ const showMessage = ref(true);
 setTimeout(() => {
     showMessage.value = false;
 }, 1500);
+
+onMounted(() => {
+    console.log(props.applications);
+});
 </script>
 
 <template>
@@ -48,8 +54,32 @@ setTimeout(() => {
                 <p class="pt-6 text-center">No applications found.</p>
             </template>
         </div>
-        <div class="sticky bottom-0 flex justify-center">
-            Pagination goes here
+        <div
+            v-show="
+                props.applications.first_page_url !==
+                props.applications.last_page_url
+            "
+            class="sticky bottom-0 flex justify-center"
+        >
+            <div class="flex items-center justify-center gap-x-9">
+                <Link
+                    :href="props.applications.prev_page_url || '#'"
+                    :as="props.applications.prev_page_url ? 'a' : 'button'"
+                    class="flex items-center justify-center gap-x-2 disabled:opacity-50 disabled:pointer-events-none"
+                    :disabled="!props.applications.prev_page_url"
+                >
+                    <ArrowLeftIcon class="w-6 h-6" />
+                </Link>
+                <span>{{ props.applications.current_page }}</span>
+                <Link
+                    :href="props.applications.next_page_url || '#'"
+                    :as="props.applications.next_page_url ? 'a' : 'button'"
+                    class="flex items-center justify-center gap-x-2 disabled:opacity-50 disabled:pointer-events-none"
+                    :disabled="!props.applications.next_page_url"
+                >
+                    <ArrowRightIcon class="w-6 h-6" />
+                </Link>
+            </div>
         </div>
     </AuthenticatedLayout>
 </template>

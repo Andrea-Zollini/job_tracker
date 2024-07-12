@@ -16,7 +16,7 @@ class AuthenticatedViewController extends Controller
         $applications = JobApplication::query()
             ->where('user_id', auth()->user()->id)
             ->orderBy('created_at', 'desc')
-            ->paginate(10);
+            ->paginate(7);
         return Inertia::render('Index', [
             'applications' => $applications,
         ]);

@@ -18,16 +18,11 @@ provide("mode", props.mode);
 <template>
     <Head title="Create" />
     <AuthenticatedLayout>
-        <!-- <Link :href="route('dashboard')" class="flex items-center gap-x-2">
-                <ArrowLeftCircleIcon
-                    class="w-6 h-6 shrink-0"
-                    aria-hidden="true"
-                />
-                Go Back
-            </Link> -->
-        <h1 class="mt-8 text-3xl font-bold text-center">
-            Add a new Job Application
-        </h1>
-        <Form is_edit="false" />
+        <div>
+            <h1 class="mt-8 text-3xl font-bold text-center">
+                Add a new Job Application
+            </h1>
+            <Form is_edit="false" />
+        </div>
     </AuthenticatedLayout>
 </template>
