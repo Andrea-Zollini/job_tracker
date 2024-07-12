@@ -6,8 +6,6 @@ const statuses = inject("statuses");
 const job_types = inject("job_types");
 const mode = inject("mode");
 const application = inject("application", null);
-
-const addedTechnologies = ref([]);
 const addedTechnology = ref("");
 
 const form = useForm({
@@ -45,7 +43,7 @@ const addTechnology = (e) => {
 
 const removeTechnology = (e) => {
     e.preventDefault();
-    addedTechnologies.value.splice(e.target.parentElement.index, 1);
+    form.metadata.technologies.splice(e.target.parentElement.index, 1);
 };
 
 const submit = (e) => {
@@ -63,12 +61,14 @@ const submit = (e) => {
 
 onMounted(() => {
     if (mode === "edit" && application) {
+        application.value = inject("application");
         form.job_title = application.job_title;
         form.description = application.description;
         form.company_name = application.company_name;
         form.location = application.location;
         form.status = application.status;
         form.job_type = application.job_type;
+        form.metadata = application.metadata;
     }
 });
 </script>
@@ -265,6 +265,31 @@ onMounted(() => {
                                     X
                                 </button>
                             </span>
+                        </template>
+                        <template
+                            v-if="
+                                application &&
+                                JSON.parse(application.metadata).technologies
+                                    .length
+                            "
+                        >
+                            <template
+                                v-for="technology in JSON.parse(
+                                    application.metadata
+                                ).technologies"
+                            >
+                                <span
+                                    class="inline-flex items-center px-3 py-2 mx-2 mb-3 text-xs font-medium text-gray-600 bg-gray-100 rounded-full"
+                                >
+                                    {{ technology }}
+                                    <button
+                                        @click="removeTechnology"
+                                        class="ms-2"
+                                    >
+                                        X
+                                    </button>
+                                </span>
+                            </template>
                         </template>
                     </div>
                 </div>
