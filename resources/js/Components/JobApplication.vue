@@ -2,7 +2,6 @@
 import { Link, useForm } from "@inertiajs/vue3";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 import { EllipsisVerticalIcon } from "@heroicons/vue/20/solid";
-import { onMounted } from "vue";
 
 const props = defineProps({
     application: Object,
@@ -65,7 +64,9 @@ const deleteApplication = (slug) => {
             </span>
         </Link>
         <Menu as="div" class="relative flex-none">
-            <MenuButton class="-m-2.5 block p-2.5 text-gray-200 hover:">
+            <MenuButton
+                class="-m-2.5 block p-2.5 text-gray-600 dark:text-gray-200 hover:"
+            >
                 <span class="sr-only">Open options</span>
                 <EllipsisVerticalIcon class="w-5 h-5" aria-hidden="true" />
             </MenuButton>

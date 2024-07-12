@@ -40,7 +40,10 @@ setTimeout(() => {
                 </div>
             </template>
             <template v-if="props.applications.data.length">
-                <ul role="list" class="divide-y divide-gray-100">
+                <ul
+                    role="list"
+                    class="divide-y divide-gray-500 dark:divide-gray-100"
+                >
                     <li
                         v-for="application in props.applications.data"
                         :key="application.id"

@@ -121,6 +121,9 @@ const sidebarOpen = ref(false);
                                     class="flex items-center h-16 shrink-0"
                                 >
                                     <ApplicationLogo class="w-auto h-8" />
+                                    <p class="uppercase text-slate-50 ms-3">
+                                        Job Journal
+                                    </p>
                                 </Link>
                                 <nav class="flex flex-col flex-1">
                                     <ul
@@ -215,6 +218,7 @@ const sidebarOpen = ref(false);
                     class="flex items-center h-16 shrink-0"
                 >
                     <ApplicationLogo class="w-auto h-8" />
+                    <p class="uppercase text-slate-50 ms-3">Job Journal</p>
                 </Link>
                 <nav class="flex flex-col flex-1">
                     <ul role="list" class="flex flex-col flex-1 gap-y-7">
