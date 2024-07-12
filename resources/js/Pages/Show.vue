@@ -38,7 +38,7 @@ provide("mode", props.mode);
         <Form is_edit="true" />
         <form
             @submit.prevent="deleteApplication(props.application.slug)"
-            class="absolute bottom-[3%] lg:bottom-[33%]"
+            class=""
         >
             <DangerButton class="px-4 py-2 bg-red-500 rounded" type="submit">
                 Delete
