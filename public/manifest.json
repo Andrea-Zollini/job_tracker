@@ -1,0 +1,17 @@
+{
+    "name": "Job Journal",
+    "short_name": "LPT",
+    "start_url": "/index.php",
+    "background_color": "#6777ef",
+    "description": "An application to manage your job applications",
+    "display": "fullscreen",
+    "theme_color": "#6777ef",
+    "icons": [
+        {
+            "src": "logo.svg",
+            "sizes": "512x512",
+            "type": "image/svg",
+            "purpose": "any maskable"
+        }
+    ]
+}
