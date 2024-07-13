@@ -1,7 +1,8 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import { store } from "@/store";
 import { Head, usePage, Link } from "@inertiajs/vue3";
-import { ref, provide, computed, onMounted } from "vue";
+import { ref, provide, computed, inject, onMounted } from "vue";
 import JobApplication from "@/Components/JobApplication.vue";
 import { ArrowRightIcon, ArrowLeftIcon } from "@heroicons/vue/20/solid";
 
@@ -16,13 +17,20 @@ provide("message", message);
 
 const showMessage = ref(true);
 
+const filteredApplications = computed(() => {
+    return props.applications.data.filter((application) => {
+        return (
+            application.job_title.toLowerCase().includes(store.filter) ||
+            JSON.parse(application.metadata).technologies.some((technology) => {
+                return technology.toLowerCase().includes(store.filter);
+            })
+        );
+    });
+});
+
 setTimeout(() => {
     showMessage.value = false;
 }, 1500);
-
-// onMounted(() => {
-//     console.log(props.applications);
-// });
 </script>
 
 <template>
@@ -45,7 +53,7 @@ setTimeout(() => {
                     class="divide-y divide-gray-500 dark:divide-gray-100"
                 >
                     <li
-                        v-for="application in props.applications.data"
+                        v-for="application in filteredApplications"
                         :key="application.id"
                         class="flex items-center justify-between py-5 gap-x-6"
                     >

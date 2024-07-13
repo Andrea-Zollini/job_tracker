@@ -17,6 +17,22 @@ const statusColors = {
     technical_interview: "bg-purple-100 text-purple-700",
 };
 
+const prettyString = (str) => {
+    if (str.includes("_") || str.includes("-")) {
+        return (
+            str
+                .split("_")
+                .join(" ")
+                .split("-")
+                .join(" ")
+                .charAt(0)
+                .toUpperCase() +
+            str.split("_").join(" ").split("-").join(" ").slice(1)
+        );
+    }
+    return str.charAt(0).toUpperCase() + str.slice(1);
+};
+
 const form = useForm({});
 const deleteApplication = (slug) => {
     form.delete(route("application.destroy", slug));
@@ -35,7 +51,7 @@ const deleteApplication = (slug) => {
                     'mt-0.5 whitespace-nowrap rounded-md px-1.5 py-0.5 text-xs font-medium ring-1 ring-inset',
                 ]"
             >
-                {{ application.status }}
+                {{ prettyString(application.status) }}
             </p>
         </div>
 

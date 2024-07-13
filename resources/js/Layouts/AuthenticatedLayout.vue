@@ -1,5 +1,6 @@
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, provide } from "vue";
+import { store } from "@/store";
 import ApplicationLogo from "@/Components/ApplicationLogo.vue";
 import Dropdown from "@/Components/Dropdown.vue";
 import DropdownLink from "@/Components/DropdownLink.vue";
@@ -13,7 +14,6 @@ import {
 } from "@headlessui/vue";
 import {
     Bars3Icon,
-    BellIcon,
     Cog6ToothIcon,
     HomeIcon,
     XMarkIcon,
@@ -290,7 +290,7 @@ const sidebarOpen = ref(false);
                     v-show="navigation[0].current"
                     class="flex self-stretch flex-1 gap-x-4 lg:gap-x-6"
                 >
-                    <form class="relative flex flex-1" action="#" method="GET">
+                    <div class="relative flex flex-1">
                         <label for="search-field" class="sr-only">Search</label>
                         <MagnifyingGlassIcon
                             class="absolute inset-y-0 left-0 w-5 h-full text-gray-400 pointer-events-none"
@@ -300,10 +300,12 @@ const sidebarOpen = ref(false);
                             id="search-field"
                             class="block w-full h-full py-0 pl-8 pr-0 bg-transparent border-0 placeholder:text-gray-400 focus:ring-0 sm:text-sm"
                             placeholder="Search..."
+                            v-model="store.filter"
+                            @change="console.log(store.filter)"
                             type="search"
                             name="search"
                         />
-                    </form>
+                    </div>
                     <div class="flex items-center gap-x-4 lg:gap-x-6">
                         <!-- Separator -->
                         <div
