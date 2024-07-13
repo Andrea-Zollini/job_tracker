@@ -44,7 +44,7 @@ const submit = () => {
                 <TextInput
                     id="email"
                     type="email"
-                    class="block w-full mt-1 text-slate-900 dark:text-white"
+                    class="block w-full mt-1 text-slate-900"
                     v-model="form.email"
                     required
                     autofocus
