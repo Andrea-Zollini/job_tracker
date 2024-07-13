@@ -56,7 +56,7 @@ const deleteApplication = (slug) => {
         </div>
 
         <div
-            class="flex items-center mt-1 text-sm leading-5 text-gray-500 gap-x-2"
+            class="flex items-center mt-1 text-sm leading-5 text-gray-300 gap-x-2"
         >
             <template
                 v-for="technology in JSON.parse(application.metadata)
