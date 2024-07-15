@@ -17,7 +17,7 @@ return new class extends Migration
             $table->ulid('id')->primary();
 
             $table
-                ->foreignId('user_id')
+                ->foreignUlid('user_id')
                 ->index()
                 ->constrained('users')
                 ->cascadeOnDelete();
