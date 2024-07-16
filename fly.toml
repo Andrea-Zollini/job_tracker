@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for job-journal on 2024-07-15T17:02:57+02:00
+# fly.toml app configuration file generated for job-journal on 2024-07-16T17:28:25+02:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -14,8 +14,8 @@ PHP_VERSION = '8.3'
 
 [env]
 APP_ENV = 'production'
-APP_URL = 'https://job-journal.fly.dev'
-DB_CONNECTION = 'pgsql'
+DB_CONNECTION = "sqlite"
+DB_DATABASE = "/var/www/html/storage/database/database.sqlite"
 LOG_CHANNEL = 'stderr'
 LOG_LEVEL = 'info'
 LOG_STDERR_FORMATTER = 'Monolog\Formatter\JsonFormatter'
@@ -34,3 +34,7 @@ processes = ['app']
 memory = '1gb'
 cpu_kind = 'shared'
 cpus = 1
+
+[mounts]
+source = "storage_dir"
+destination = "/var/www/html/storage"
