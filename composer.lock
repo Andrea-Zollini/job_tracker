@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d4a762eb163f629618f19f695034faf5",
+    "content-hash": "940a6dea4acc6e6662fc35b0a8bd0bf9",
     "packages": [
         {
             "name": "brick/math",
@@ -1128,16 +1128,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v11.15.0",
+            "version": "v11.16.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "ba85f1c019bed59b3c736c9c4502805efd0ba84b"
+                "reference": "bd4808aaf103ccb5cb4b00bcee46140c070c0ec4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/ba85f1c019bed59b3c736c9c4502805efd0ba84b",
-                "reference": "ba85f1c019bed59b3c736c9c4502805efd0ba84b",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/bd4808aaf103ccb5cb4b00bcee46140c070c0ec4",
+                "reference": "bd4808aaf103ccb5cb4b00bcee46140c070c0ec4",
                 "shasum": ""
             },
             "require": {
@@ -1330,7 +1330,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2024-07-09T15:38:12+00:00"
+            "time": "2024-07-16T14:33:07+00:00"
         },
         {
             "name": "laravel/prompts",
@@ -6225,74 +6225,6 @@
             "time": "2023-11-03T12:00:00+00:00"
         },
         {
-            "name": "fly-apps/dockerfile-laravel",
-            "version": "1.0.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/fly-apps/dockerfile-laravel.git",
-                "reference": "1f642e5df744cc9bf106801b28fb530c451ea0b8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/fly-apps/dockerfile-laravel/zipball/1f642e5df744cc9bf106801b28fb530c451ea0b8",
-                "reference": "1f642e5df744cc9bf106801b28fb530c451ea0b8",
-                "shasum": ""
-            },
-            "require-dev": {
-                "illuminate/view": "^10.0",
-                "laravel-zero/framework": "^10.2",
-                "laravel/pint": "^1.13",
-                "mockery/mockery": "^1.6",
-                "nunomaduro/termwind": "^1.15.1",
-                "pestphp/pest": "^2.22",
-                "phpspec/php-diff": "^1.1"
-            },
-            "bin": [
-                "builds/dockerfile-laravel"
-            ],
-            "type": "project",
-            "autoload": {
-                "psr-4": {
-                    "App\\": "app/",
-                    "Database\\Seeders\\": "database/seeders/",
-                    "Database\\Factories\\": "database/factories/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Chris Fidao",
-                    "email": "fideloper@gmail.com"
-                },
-                {
-                    "name": "Kathryn Anne Tan",
-                    "email": "kathryn@fly.io"
-                },
-                {
-                    "name": "Sam Ruby",
-                    "email": "rubys@fly.io"
-                }
-            ],
-            "description": "Dockerfile generator and Fly.io helper.",
-            "homepage": "https://fly.io/docs/laravel",
-            "keywords": [
-                "Fly.io",
-                "cli",
-                "docker",
-                "dockerfile",
-                "generate",
-                "laravel"
-            ],
-            "support": {
-                "issues": "https://github.com/fly-apps/dockerfile-laravel/issues",
-                "source": "https://github.com/fly-apps/dockerfile-laravel/tree/1.0.5"
-            },
-            "time": "2024-05-27T13:09:56+00:00"
-        },
-        {
             "name": "hamcrest/hamcrest-php",
             "version": "v2.0.1",
             "source": {
@@ -6401,63 +6333,6 @@
                 "source": "https://github.com/Jean85/pretty-package-versions/tree/2.0.6"
             },
             "time": "2024-03-08T09:58:59+00:00"
-        },
-        {
-            "name": "ladumor/laravel-pwa",
-            "version": "v0.0.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/shailesh-ladumor/laravel-pwa.git",
-                "reference": "1867899d6916803aef7ea02f489597555cc4ab02"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/shailesh-ladumor/laravel-pwa/zipball/1867899d6916803aef7ea02f489597555cc4ab02",
-                "reference": "1867899d6916803aef7ea02f489597555cc4ab02",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": ">=5.4",
-                "php": ">=5.6"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "\\Ladumor\\LaravelPwa\\PWAServiceProvider"
-                    ],
-                    "aliases": {
-                        "LaravelPwa": "Ladumor\\LaravelPwa\\LaravelPwa"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Ladumor\\LaravelPwa\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Shailesh Ladumor",
-                    "email": "shaileshmladumor@gmail.com"
-                }
-            ],
-            "description": "this package used for the make pwa website.",
-            "keywords": [
-                "laravel",
-                "laravel-pwa",
-                "php",
-                "pwa-laravel"
-            ],
-            "support": {
-                "issues": "https://github.com/shailesh-ladumor/laravel-pwa/issues",
-                "source": "https://github.com/shailesh-ladumor/laravel-pwa/tree/v0.0.4"
-            },
-            "time": "2023-09-02T13:09:30+00:00"
         },
         {
             "name": "laravel/breeze",
